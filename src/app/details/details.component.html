@@ -1,0 +1,33 @@
+<div class="details">
+  <div class="game-banner">
+    <img src="{{(game$ | async)?.background_image}}" alt="" class="game-banner-img">
+  </div>
+  <div class="details-wrapper">
+    <div class="game-header">
+      <h1 class="game-header-title">{{(game$|async)?.name}}</h1>
+      <h2 class="game-header-release-date">{{(game$|async)?.released}}</h2>
+    </div>
+    <p class="game-header-genres" *ngFor="let genre of (game$ |async)?.genres">
+      <span>{{genre.name}}</span>
+    </p>
+      <div class="game-gauge">
+        <mwl-gauge
+        class="two"
+        [value]="(game$ | async)?.metacritic ?? 0"
+        [dialEndAngle]="0"
+        [dialStartAngle]="180"
+        [max]="100"
+        [min]="0"
+         [animated]="true"
+        [animationDuration]="2"
+        [color]="getColor"
+        ></mwl-gauge>
+        <a class="game-gauge-label" target="_blank" href="{{(game$ | async)?.metacritic_url}}">Metacritic</a>
+
+
+
+      </div>
+
+  </div>
+
+</div>
